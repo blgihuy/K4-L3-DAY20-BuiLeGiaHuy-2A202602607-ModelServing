@@ -132,17 +132,21 @@ Dù `-t 24` đạt 32.4 tok/s, mức chênh lệch so với `-t 10` (31.0 tok/s)
 > Bỏ trống nếu không làm. Xem `docs/bonus/README.md`. Đừng làm hết — **một** finding sâu
 > ăn điểm hơn năm bảng nông.
 
-**Đã làm:** 
+**Đã làm:** B2 `sweep-ctx` (Context-length sweep khảo sát chi phí prefill / TTFT) và B5 C8 `semantic-cache-offline`
 
 **Numbers:**
 
 ```
-before:  
-after:   
-speedup: 
+before:  256 tokens -> 444.0 tok/s (prefill: 576.5 ms, 1.00x linear)
+after:   8192 tokens -> 251.5 tok/s (prefill: 32576.5 ms, 1.77x linear)
+speedup: 0.57× throughput (tương đương 56.5× tăng latency cho 32× context)
 ```
 
 **Điều này nói lên gì mà deck chưa nói:**
+
+Độ trễ prefill (TTFT) duy trì xấp xỉ tuyến tính khá ổn định ở khoảng 256–2048 tokens (~440 tok/s), nhưng bắt đầu uốn cong phi tuyến rõ rệt (quadratic bend $O(N^2)$ của self-attention) từ 4096 tokens (tụt còn 355 tok/s, 1.25x chi phí tuyến tính) và bùng nổ tại 8192 tokens (251 tok/s, mất tới 32.6 giây chỉ cho giai đoạn prefill).
+
+Bài học thiết kế then chốt cho RAG: Khả năng chứa context window lớn (8k) không đồng nghĩa với việc nên nhồi nhét nhiều chunks. Trên phần cứng laptop/edge, việc nhồi >10 chunks (4k–8k tokens) khiến TTFT bùng nổ (>11s đến >32s chờ đợi trước khi token đầu tiên xuất hiện), phá hủy trải nghiệm tương tác. Ngân sách prompt cho RAG chỉ nên gói gọn trong 3–5 chunks chất lượng cao (≤ 1500 tokens) để giữ TTFT dưới 3 giây.
 
 
 
