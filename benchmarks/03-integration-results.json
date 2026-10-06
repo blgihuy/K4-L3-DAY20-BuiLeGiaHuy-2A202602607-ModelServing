@@ -1,0 +1,104 @@
+{
+  "backend": "keyword overlap",
+  "mean_ms": {
+    "embed": 0.0,
+    "retrieve": 0.1,
+    "llm": 6830.1,
+    "total": 6830.1
+  },
+  "results": [
+    {
+      "query": "Why is goodput more useful than raw throughput?",
+      "answer": "Based on the context provided, **Goodput** is more useful than raw throughput because it explicitly accounts for SLOs (Service Level Objects) and targets.\n\nWhile raw throughput measures requests per second (RPS) based on total memory usage, Goodput specifically counts only the requests per second that met the TTFT (Throughput Target in Function) and TPOT (Throughput Target in Operations) targets. This means Goodput ensures that the system's performance aligns with the defined SLAs, whereas raw throughput ignores SLOs.",
+      "contexts": [
+        {
+          "id": "goodput",
+          "score": 1.0
+        },
+        {
+          "id": "paged",
+          "score": 0.0
+        },
+        {
+          "id": "radix",
+          "score": 0.0
+        }
+      ],
+      "embed_backend": "keyword overlap",
+      "timings_ms": {
+        "embed": 0.0,
+        "retrieve": 0.1,
+        "llm": 7566.8,
+        "total": 7566.9
+      },
+      "server_timings": {
+        "prompt_n": 151,
+        "prompt_ms": 747.305,
+        "predicted_n": 110,
+        "predicted_ms": 4342.089
+      }
+    },
+    {
+      "query": "What problem does PagedAttention actually solve?",
+      "answer": "PagedAttention solves the problem of **internal fragmentation** in GPU memory by storing the KV cache in non-contiguous pages.",
+      "contexts": [
+        {
+          "id": "paged",
+          "score": 1.0
+        },
+        {
+          "id": "radix",
+          "score": 0.0
+        },
+        {
+          "id": "disagg",
+          "score": 0.0
+        }
+      ],
+      "embed_backend": "keyword overlap",
+      "timings_ms": {
+        "embed": 0.0,
+        "retrieve": 0.0,
+        "llm": 4032.8,
+        "total": 4032.8
+      },
+      "server_timings": {
+        "prompt_n": 114,
+        "prompt_ms": 523.664,
+        "predicted_n": 26,
+        "predicted_ms": 1153.104
+      }
+    },
+    {
+      "query": "When does splitting prefill and decode help?",
+      "answer": "Splitting prefill and decode helps when the model's **prefill** (token generation) is computationally expensive and **decode** (tokenization) is memory-bound.\n\nThis is because:\n1.  **Prefill** is a compute-bound operation that requires significant processing time.\n2.  **Decode** is a memory-bound operation that consumes large amounts of RAM.\n\nBy splitting them, the system can:\n*   **Skip prefill entirely**: Using the shared prefix from the radix trie allows the engine to skip the expensive compute-heavy phase of prefill.\n*   **Minimize memory usage**: By decoupling the two phases, the model can utilize the large amount of memory available for the decode phase to process the tokens without the need for the compute-heavy prefill phase.",
+      "contexts": [
+        {
+          "id": "disagg",
+          "score": 2.0
+        },
+        {
+          "id": "radix",
+          "score": 1.0
+        },
+        {
+          "id": "batching",
+          "score": 1.0
+        }
+      ],
+      "embed_backend": "keyword overlap",
+      "timings_ms": {
+        "embed": 0.0,
+        "retrieve": 0.1,
+        "llm": 8890.6,
+        "total": 8890.7
+      },
+      "server_timings": {
+        "prompt_n": 113,
+        "prompt_ms": 603.787,
+        "predicted_n": 165,
+        "predicted_ms": 5717.957
+      }
+    }
+  ]
+}

@@ -30,7 +30,7 @@ thêm một dòng giải thích.
 
 | Nền tảng | Cách mở |
 |---|---|
-| **Colab** | Mở trực tiếp: [colab.research.google.com/github/VinUni-AI20k/Day20-Track2-ModelServing/blob/main/cloud/Day20-lab.ipynb](https://colab.research.google.com/github/VinUni-AI20k/Day20-Track2-ModelServing/blob/main/cloud/Day20-lab.ipynb) — hoặc File → Open notebook → GitHub → paste URL repo |
+| **Colab** | Mở trực tiếp: [colab.research.google.com/github/VinUni-AI20k/K4-Track02-Day20-ModelServing-Lab/blob/main/cloud/Day20-lab.ipynb](https://colab.research.google.com/github/VinUni-AI20k/K4-Track02-Day20-ModelServing-Lab/blob/main/cloud/Day20-lab.ipynb) — hoặc File → Open notebook → GitHub → paste URL repo |
 | **Kaggle** | Mở [kaggle.com/code](https://www.kaggle.com/code) → New Notebook → File → Import Notebook → upload `cloud/Day20-lab.ipynb` |
 
 **Trên Kaggle, phải bật Internet** trong settings sidebar trước khi chạy. Nếu Internet
